@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                bat "docker build -f Dockerfile.dockerfile -t=messi/tests4 ."
+                bat "docker build -f Dockerfile.dockerfile -t=messi1994/tests4 ."
             }
         }
         stage('Push Image') {
@@ -19,7 +19,7 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
 			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push messi/tests4:latest"
+			        bat "docker push messi1994/tests4:latest"
 			    }
             }
         }
