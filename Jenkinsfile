@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                bat "docker build -f Dockerfile.dockerfile -t='messi/tests4' ."
+                bat "docker build -f Dockerfile.dockerfile -t=messi/tests4 ."
             }
         }
         stage('Push Image') {
