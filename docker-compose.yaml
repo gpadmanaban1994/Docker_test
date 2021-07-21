@@ -1,0 +1,31 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub:3.14
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:3.14
+    shm_size: '2gb'
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+
+  firefox:
+    image: selenium/node-firefox:3.14
+    shm_size: '2gb'
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub
+  tests:
+    image: messi1994/tests4
+    environment:
+      - BROWSER=firefox
+      - HUB_HOST=hub
+    depends_on:
+       - chrome
+       - firefox
+    volumes:
+       - ./testresult:/user/testproj/test-output
